@@ -1,1 +1,11 @@
-apiVersion:
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+spec:
+  containers:
+    - name: app-cont
+      image: dhanunjay2026/html-la
+      ports:
+        - containerPort: 80
