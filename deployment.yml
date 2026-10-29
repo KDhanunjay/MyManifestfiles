@@ -1,0 +1,103 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flm
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      labels:
+        app: swiggy
+
+    spec:
+      containers:
+        - name: cont1
+          image: shaikmustafa/paytm:bus
+          ports:
+            - containerPort: 80
+            
+
+#commands to manage deployments
+kubectl get deployments
+Description: Lists all Deployments in the current namespace.
+
+kubectl get deploy
+Description: Short form of "kubectl get deployments".
+
+kubectl get deployment myapp
+Description: Displays details about the "myapp" Deployment.
+
+kubectl get deploy -o wide
+Description: Displays Deployments with additional information such as container images and selectors.
+
+kubectl describe deployment myapp
+Description: Shows detailed information about the "myapp" Deployment, including ReplicaSets, Pods, events, and configuration.
+
+kubectl get rs
+Description: Lists all ReplicaSets created by Deployments.
+
+kubectl describe rs
+Description: Displays detailed information about ReplicaSets.
+
+
+kubectl scale deployment myapp --replicas=5
+Description: Scales the "myapp" Deployment to 5 Pods.
+
+kubectl scale deployment myapp --replicas=2
+Description: Reduces the "myapp" Deployment to 2 Pods.
+
+kubectl get deployment myapp -o yaml
+Description: Displays the complete YAML configuration of the Deployment.
+.
+
+kubectl set image deployment/myapp cont-1=image-name
+Description: Updates the nginx container image in the "myapp" Deployment.
+
+
+kubectl set image deployment/myapp nginx=nginx:1.28 --record
+Description: Updates the nginx image and records the change in the rollout history. Note: --record is deprecated in modern Kubernetes versions.
+
+kubectl rollout status deploy myapp
+Description: Displays the progress of the Deployment rollout.
+
+kubectl rollout history deploy myapp
+Description: Displays the revision history of the Deployment.
+
+kubectl rollout history deploy myapp --revision=2
+Description: Displays details about a specific Deployment revision.
+
+kubectl rollout pause deployment/myapp
+Description: Pauses the rollout of the Deployment.
+
+kubectl rollout resume deployment/myapp
+Description: Resumes a paused Deployment rollout.
+
+kubectl rollout restart deployment/myapp
+Description: Restarts all Pods managed by the Deployment without changing the image.
+
+kubectl rollout undo deployment/myapp
+Description: Rolls back the Deployment to the previous revision.
+
+
+kubectl delete deployment myapp
+Description: Deletes the "myapp" Deployment and the Pods managed by it.
+
+kubectl delete deployment --all
+Description: Deletes all Deployments in the current namespace.
+
+
+kubectl logs deployment/myapp
+Description: Displays logs from a Pod managed by the "myapp" Deployment.
+
+kubectl logs deployment/myapp --tail=100
+Description: Displays the last 100 lines of logs from Pods managed by the Deployment.
+
+kubectl get hpa
+Description: Lists Horizontal Pod Autoscalers.
+
+kubectl describe hpa myapp
+Description: Displays detailed information about the HPA associated with the Deployment.

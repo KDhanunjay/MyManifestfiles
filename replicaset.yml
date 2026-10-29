@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: MyRS
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      labels:
+        app: swiggy
+        
+    spec:
+      containers:
+        - name: cont1
+          image: dhanunjay2026/cards
+          ports:
+            - containerPort: 80
+
+
